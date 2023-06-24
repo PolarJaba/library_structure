@@ -24,7 +24,7 @@
 Reader: первичный ключ reader_id.
 Rent: первичный ключ rent_id, сопоставление вторичных ключей reader_id и book_id.
 Book: первичный ключ book_id, вторичный ключ для связи с таблицей Publisher - publish_id.
-Authorship: сопоставление вторичных ключей таблиц Author и Rent.
+Authorship: первичный ключ unique_author_work_id, сопоставление вторичных ключей таблиц Author и Rent.
 Author: первичный ключ author_id.
 Publisher: первичный ключ publish_id.
 

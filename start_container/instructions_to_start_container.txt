@@ -1,0 +1,7 @@
+without volumes
+
+In CMD:
+
+1. Open the directory with dockerfile (cd \direct)
+2. docker build -t test_image .
+3. docker run --rm --name test -p 5432:5432 -d test_image
