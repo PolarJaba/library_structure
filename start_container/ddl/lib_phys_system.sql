@@ -7,12 +7,17 @@ CREATE TABLE IF NOT EXISTS public.reader (
     adress VARCHAR(250),
     phone_num VARCHAR(12)
 );
+CREATE TABLE IF NOT EXISTS public.publisher(
+    publish_id serial PRIMARY KEY,
+    publish_name VARCHAR(50) NOT NULL,
+    publish_city VARCHAR(50)
+);
 CREATE TABLE IF NOT EXISTS public.book (
     book_id serial PRIMARY KEY,
-    book_name VARCHAR(250)
+    book_name VARCHAR(250) NOT NULL,
     year_of_pub DATE,
     publish_id BIGINT,
-    FOREIGN KEY (publish_id) REFERENCES publish (publish_id), 
+    FOREIGN KEY (publish_id) REFERENCES publisher (publish_id), 
     volume INTEGER,
     price INTEGER,
     num_of_copies INTEGER
@@ -38,11 +43,6 @@ CREATE TABLE IF NOT EXISTS public.authorship (
     book_id BIGINT,
     FOREIGN KEY (author_id) REFERENCES author (author_id) ON DELETE SET NULL,
     FOREIGN KEY (book_id) REFERENCES book (book_id) ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS public.publisher(
-    publish_id serial PRIMARY KEY,
-    publish_name VARCHAR(50) NOT NULL,
-    publish_city VARCHAR(50)
 );
 
 --Some start data
