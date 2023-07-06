@@ -28,13 +28,14 @@ CREATE TABLE IF NOT EXISTS public.rent (
     reader_id BIGINT,
     FOREIGN KEY (book_id) REFERENCES book (book_id) ON DELETE CASCADE,
     FOREIGN KEY (reader_id) REFERENCES reader (reader_id) ON DELETE CASCADE,
-    rent_date DATE
+    rent_date DATE,
+    return_date DATE
 );
 CREATE TABLE IF NOT EXISTS public.author (
     author_id serial PRIMARY KEY,
     author_last_name VARCHAR(50) NOT NULL,
     author_first_name VARCHAR(50) NOT NULL,
-    author_surname VARCHAR(50),
+    author_middle_name VARCHAR(50),
     author_country VARCHAR(50)
 );
 CREATE TABLE IF NOT EXISTS public.authorship (
@@ -45,12 +46,4 @@ CREATE TABLE IF NOT EXISTS public.authorship (
     FOREIGN KEY (book_id) REFERENCES book (book_id) ON DELETE CASCADE
 );
 
---Some start data
-INSERT INTO public.reader(num_id, last_name, first_name) 
-VALUES (1, 'Smith', 'John');
 
-INSERT INTO public.book(book_name)
-VALUES ('How to fix anything');
-
-INSERT INTO public.author(author_last_name, author_first_name)
-VALUES ('Leonard', 'D.');
