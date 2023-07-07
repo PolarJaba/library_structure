@@ -1,9 +1,9 @@
 --1st question
-SELECT r.reader_id, COUNT(r.reader_id) AS num_of_books
+SELECT r.reader_id, COUNT(DISTINCT r.book_id) AS num_of_unique_books
 FROM public.rent r
 WHERE r.return_date >= '2023-01-01'
 GROUP BY r.reader_id
-ORDER BY num_of_books DESC;
+ORDER BY num_of_unique_books DESC;
 
 --2nd
 SELECT r.reader_id, COUNT(r.reader_id)
