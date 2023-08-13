@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:latest
+    container_name: lib_system
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: lib_system
+    volumes:
+      - ./db/ddl/1_lib_phys_system.sql:/docker-entrypoint-initdb.d/1_lib_phys_system.sql
+      - ./db/dml/2_first_data.sql:/docker-entrypoint-initdb.d/2_first_data.sql 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d lib_system"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+
